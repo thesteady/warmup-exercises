@@ -1,11 +1,11 @@
 
 class Beer
-  def verse
+  def self.verse
   puts "#{@number} bottles of #{@drink} on the wall, #{@number} bottles of #{@drink}."
   puts "Take one down and pass it around, #{@number-1} bottles of #{@drink} on the wall."
   end
 
-  def song
+  def self.song
     printf "How many bottles will you start with?"
     @number = gets.chomp.to_i
     printf "What are you drinking?"
@@ -28,5 +28,5 @@ class Beer
     end
   end
 end
-beer =Beer.new
-beer.song
+
+Beer.song
