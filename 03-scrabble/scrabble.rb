@@ -12,7 +12,7 @@
 class Scrabble
 
   def self.score(word)
-    letters = word.split("")
+    letters = word.downcase.split("")
     points = 0
     letters.each do |letter|
       case letter
@@ -23,7 +23,7 @@ class Scrabble
       when 'k' then points += 5
       when 'j', 'x' then points += 8
       when 'q,', 'z' then points += 10
-      else puts "this isn't a letter"
+      else puts "this: '#{letter}' isn't a letter."
       end
     end
     puts "Your word #{word} is worth #{points} points."
@@ -34,3 +34,5 @@ end
 Scrabble.new
 Scrabble.score("hello")
 Scrabble.score("cabbage")
+Scrabble.score("part3y")
+Scrabble.score("heLLO")
