@@ -22,16 +22,17 @@ class Scrabble
       when 'f', 'h', 'v', 'w', 'y' then points +=4
       when 'k' then points += 5
       when 'j', 'x' then points += 8
-      when 'q,', 'z' then points += 10
+      when 'q', 'z' then points += 10
       else puts "this: '#{letter}' isn't a letter."
       end
     end
     puts "Your word #{word} is worth #{points} points."
+    points
   end
 
 end
 
-Scrabble.new
+
 Scrabble.score("hello")
 Scrabble.score("cabbage")
 Scrabble.score("part3y")
