@@ -6,6 +6,7 @@ class Bob
     loop do
       printf "Say something to Bob:"
       @input = gets.chomp
+      sep = @input.split
       reply(@input)
     end
   end
