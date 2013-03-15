@@ -6,7 +6,16 @@ class Say
 
   def in_english
     if number >=1_000_000
-      if number % 1_000_000 == 0
+      millions
+    elsif number >= 1_000
+      thousands
+    else
+    less_than_thousands
+    end
+  end
+
+  def millions
+    if number % 1_000_000 == 0
         "#{number/1_000_000} million"
       else
         div = number/1_000_000
@@ -19,24 +28,19 @@ class Say
           "#{div} million #{remainder/1_000} thousand #{remainder % 1_000}"
         end
       end
-    elsif number >= 1_000
-      div = number / 1_000
-      remainder = number % 1_000
-      if remainder != 0
-        "#{div} thousand #{remainder}"
-      else
-        "#{div} thousand"
-      end
+  end
+
+  def thousands
+    div = number / 1_000
+    remainder = number % 1_000
+    if remainder != 0
+      "#{div} thousand #{remainder}"
     else
-    return number.to_s
+      "#{div} thousand"
     end
   end
 
-  # def lookup
-  #   {
-  #     0=> '0',
-  #     1
-  #     100=> '100'
-  #   }
-  # end
+  def less_than_thousands
+    return number.to_s
+  end
 end
