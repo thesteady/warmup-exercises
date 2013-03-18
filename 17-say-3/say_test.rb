@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative './say.rb'
+require_relative './say'
 
 class SayTest < MiniTest::Unit::TestCase
   def test_0
@@ -23,8 +23,8 @@ class SayTest < MiniTest::Unit::TestCase
     assert_equal '1 million', Say.new(10**6).in_english
   end
 
-  def test_1_million_and_some_crumbs
-    assert_equal '1 million 2', Say.new(1000002).in_english
+  def test_2_million_and_some_crumbs
+    assert_equal '2 million 2', Say.new(2000002).in_english
   end
 
   def test_1_million_2_thousand_345

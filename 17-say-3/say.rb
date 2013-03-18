@@ -5,42 +5,34 @@ class Say
   end
 
   def in_english
-    if number >=1_000_000
-      millions
-    elsif number >= 1_000
-      thousands
-    else
-    less_than_thousands
+
+    unless number.between?(0, 1_000_000_000_000-1)
+      raise ArgumentError.new "can't do that"
     end
+
+    return "0" if number == 0
+
+    s = ""
+    s << "#{billions} billion" if billions > 0
+    s << " #{millions} million" if millions > 0
+    s << " #{thousands} thousand" if thousands > 0
+    s << " #{hundreds}" if hundreds > 0
+    s.strip
   end
 
-  def millions
-    if number % 1_000_000 == 0
-        "#{number/1_000_000} million"
-      else
-        div = number/1_000_000
-        remainder = number % 1_000_000
-        if remainder % 1_000 == 0
-          "#{div} million #{remainder/1_000} thousand"
-        elsif remainder / 1_000 == 0
-          "#{div} million #{remainder}"
-        else
-          "#{div} million #{remainder/1_000} thousand #{remainder % 1_000}"
-        end
-      end
+  def hundreds
+    @hundreds ||= number % 1_000
   end
 
   def thousands
-    div = number / 1_000
-    remainder = number % 1_000
-    if remainder != 0
-      "#{div} thousand #{remainder}"
-    else
-      "#{div} thousand"
-    end
+    @thousand ||= number % 1_000_000 / 1000
   end
 
-  def less_than_thousands
-    return number.to_s
+  def millions
+    @millions ||= number % 1_000_000_000 / 1_000_000
+  end
+
+  def billions
+    @billions ||= number / 1_000_000_000
   end
 end
