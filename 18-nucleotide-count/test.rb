@@ -8,20 +8,24 @@ class DNATest < MiniTest::Unit::TestCase
   end
 
   def test_empty_dna_string_has_no_nucleotides
+    skip
     expected = {'A' => 0, 'T' => 0, 'C' => 0, 'G' => 0}
     assert_equal expected, DNA.new("").nucleotide_counts
   end
 
   def test_repetitive_cytidine_gets_counted
+    skip
     assert_equal 5, DNA.new('CCCCC').count('C')
   end
 
   def test_repetitive_sequence_has_only_guanosine
+    skip
     expected = {'A' => 0, 'T' => 0, 'C' => 0, 'G' => 8}
     assert_equal expected, DNA.new('GGGGGGGG').nucleotide_counts
   end
 
   def test_counts_only_thymidine
+    skip
     assert_equal 1, DNA.new('GGGGGTAACCCGG').count('T')
   end
 
@@ -31,6 +35,17 @@ class DNATest < MiniTest::Unit::TestCase
     assert_equal 2, dna.count('T')
   end
 
+  def test_dna_has_no_uracil
+    skip
+    assert_equal 0, DNA.new('GATTACA').count('U')
+  end
+
+  def test_validates_nucleotides
+    skip
+    assert_raises ArgumentError do
+      DNA.new("GACT").count('X')
+    end
+    
   def test_counts_all_nucleotides
     skip
     s = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
