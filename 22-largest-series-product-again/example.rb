@@ -1,12 +1,39 @@
 class Series
   attr_reader :digits
-
-  def initialize(series)
-    @digits = series.split("").map{|i| i.to_i}
+  def initialize(numeric_string)
+    @digits = convert_to_digits(numeric_string)
   end
 
-  def slices(count_num)
-    [[9, 8], [8, 2], [2, 7], [7, 3], [3, 4], [4, 6], [6, 3]]
+  def largest_product(length)
+    if length > digits.length
+      raise ArgumentError.new('Not enough digits')
+    end
+
+    products = []
+    slices(length).each do |slice|
+      products << slice.inject(1) do |product, n|
+        product * n
+      end
+    end
+    products.sort.last
   end
 
+  def slices(length)
+    result = []
+    i = -1
+    begin
+      i += 1
+      i2 = i + length - 1
+      result << digits[i..i2]
+    end while i2 < digits.size - 1
+    result
+  end
+
+  private
+
+  def convert_to_digits(s)
+    s.chars.to_a.map(&:to_i)
+  end
 end
+
+>>>>>>> 43fe48a5398e8747af0ae90f4efe7f6763391f48
