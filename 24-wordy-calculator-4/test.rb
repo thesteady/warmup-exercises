@@ -8,7 +8,8 @@ class WordProblemTest < MiniTest::Unit::TestCase
   end
 
   def test_add_2
-    assert_equal 3, WordProblem.new('What is 1 plus 2?').answer
+    skip
+    assert_equal 55, WordProblem.new('What is 53 plus 2?').answer
   end
 
   def test_add_more_digits
@@ -62,4 +63,12 @@ class WordProblemTest < MiniTest::Unit::TestCase
       WordProblem.new('What is 53 cubed?').answer
     end
   end
+
+  def test_irrelevant
+    skip
+    assert_raises ArgumentError do
+      WordProblem.new('Who is the president of the United States?').answer
+    end
+  end
+
 end
